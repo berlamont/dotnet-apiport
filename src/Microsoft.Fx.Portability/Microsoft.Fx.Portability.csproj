@@ -2,8 +2,7 @@
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.props))\dir.props" />
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
-    <!--<TargetFramework>net46</TargetFramework>-->
+    <TargetFrameworks>netstandard1.3;net451</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -12,11 +11,19 @@
     <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(TargetFramework)'== 'net451'">
+    <DefineConstants>$(DefineConstants);FEATURE_SERIALIZABLE;FEATURE_ASSEMBLY_LOCATION;FEATURE_XML_SCHEMA</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="System.Linq.Parallel" Version="4.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="1.0.0" />
     <PackageReference Include="MicroBuild.Core" Version="0.2.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'== 'net451'">
+    <PackageReference Include="System.Net.Http" Version="4.1.0" />
   </ItemGroup>
 
   <ItemGroup>
