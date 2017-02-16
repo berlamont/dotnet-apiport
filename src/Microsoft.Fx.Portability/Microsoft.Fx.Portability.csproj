@@ -11,7 +11,7 @@
     <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)'== 'net451'">
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net451'">
     <DefineConstants>$(DefineConstants);FEATURE_SERIALIZABLE;FEATURE_ASSEMBLY_LOCATION;FEATURE_XML_SCHEMA</DefineConstants>
   </PropertyGroup>
 
